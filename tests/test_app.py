@@ -1,5 +1,5 @@
 from unittest import TestCase
-from src.app import divide, multiply
+from src.app-v1 import divide, multiply
 
 class TestFunctions(TestCase):
     def test_result(self):
