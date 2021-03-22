@@ -18,11 +18,9 @@ test_job:
     - echo "Running tests"
     - python -m unittest discover -s "./tests/"
 
-deploy.job:
+deploy_job:
   stage: deploy
   image: alpine:latest
-  tags:
-    - deployment
   script:
     - chmod og= $ID_RSA
     - apk update && apk add openssh-client
