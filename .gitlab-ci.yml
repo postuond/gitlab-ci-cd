@@ -6,6 +6,7 @@ before_script:
 variables:
   TAG_LATEST: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:latest
   TAG_COMMIT: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:$CI_COMMIT_SHORT_SHA
+  CI_PROJECT_DIR: $CI_PROJECT_DIR
 
 stages:
   - test
@@ -29,8 +30,8 @@ deploy.job:
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker pull $TAG_COMMIT"
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker container rm -f my-app || true"
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker run -d -p 80:80 --name my-app $TAG_COMMIT"
-  volumes: 
-    - ./src/ :/tmp/
+    - echo "the project directory is - $CI_PROJECT_DIR"
+    - cat $CI_PROJECT_DIR/*
   environment:
     name: production
     url: http://192.168.88.132
