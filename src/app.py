@@ -14,3 +14,5 @@ def multiply(*args: Union[int, float]):
         total *= arg
 
     return total
+
+# kvuli commitu
