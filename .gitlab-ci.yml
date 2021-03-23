@@ -20,7 +20,7 @@ test_job:
 
 deploy_job:
   stage: deploy
-  image: python:3.7-alpin
+  image: python:3.7-alpine
   script:
     - chmod og= $ID_RSA
     - apk 
